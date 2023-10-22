@@ -1,0 +1,22 @@
+name: "Issue Labeler"
+description: "Labels issues according to handles/slugs"
+
+# on:
+#   issues:
+#     types: [opened, edited]
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: github/issue-labeler@v3.2
+      with:
+        configuration-path: issue-labeler/labels.yml
+        repo-token: ${{ github.token }}
+        enable-versioned-regex: 0
+        include-title: 1
+        include-body: 0
